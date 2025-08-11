@@ -1,4 +1,4 @@
 package com.aniket.AiLegalAssistantApplication.Repositories;
 
-public class ChunkRepository {
+public interface ChunkRepository {
 }
