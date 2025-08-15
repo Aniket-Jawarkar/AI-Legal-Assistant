@@ -1,63 +1,55 @@
+# 🤖 AI Legal Assistant – React + Spring Boot
 
-AI Legal Assistant – React + Spring Boot
+An **AI-powered legal assistant** that lets you upload documents, preview them, summarize them, and ask AI questions about their contents.
 
-This project is a full-stack AI-powered legal assistant that lets users upload documents, view them, summarize them, and ask AI questions about their contents.
-It’s built with:
+Built with:
+- **⚛️ Frontend:** React + Tailwind CSS (Vite)
+- **☕ Backend:** Spring Boot (Java) with REST APIs
+- **🧠 AI Integration:** AI answer service for Q&A & summarization
 
-Frontend: React + Tailwind CSS (Vite)
+---
 
-Backend: Spring Boot (Java) with REST APIs
+## 🚀 Features
 
-AI Integration: AI answer service for Q&A and summarization
+✅ **Upload Documents** – PDFs, images, or text files  
+✅ **Document List & Preview** – Friendly file names + file-type icons  
+✅ **Summarization** – AI-generated concise summary of a document  
+✅ **Ask Questions** – Query the AI about document content or general legal queries  
+✅ **Delete Documents** – Remove unwanted uploads easily  
+✅ **Responsive UI** – Clean, mobile-friendly layout  
 
-🚀 Features
+---
 
-Upload Documents – Upload PDFs, images, or text files to the backend.
+## 📂 Project Structure
 
-Document List & Preview – See uploaded documents with friendly names and file-type icons.
+### 🖥 Backend (Spring Boot)
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/documents/upload` | POST | Upload a file |
+| `/api/documents` | GET | List all documents |
+| `/api/documents/{id}` | GET | Get document details |
+| `/api/documents/{id}` | DELETE | Delete a document |
+| `/api/ai/ask` | POST | Ask AI a question |
+| `/api/ai/summarize` | POST | Summarize a document |
 
-Summarization – Generate a concise summary of a selected document using AI.
+### 🎨 Frontend (React + Tailwind CSS)
+- Single Page Application (SPA)
+- Document list with file icons
+- Summarization & Q&A panel
+- Upload form with progress + error handling
 
-Ask Questions – Query the AI about the document’s contents or general legal questions.
+---
 
-Delete Documents – Remove unwanted documents from the system.
+## 🖼 Screenshots
 
-Responsive UI – Clean, mobile-friendly layout with Tailwind CSS styling.
+### 1️⃣ Uploading the File
+<img width="1602" alt="Upload Screenshot" src="https://github.com/user-attachments/assets/329a938d-2a22-40e4-81ff-63b4adb7e76c" />
 
-📂 Project Structure
-Backend (Spring Boot)
+### 2️⃣ Asking Questions
+<img width="1602" alt="Ask Questions Screenshot" src="https://github.com/user-attachments/assets/93a2a1e0-cfb5-4be1-8ba7-d0e086b02cfc" />
 
-/api/documents – Manage documents
+### 3️⃣ Summarization of Whole Document
+<img width="1601" alt="Summarization Screenshot" src="https://github.com/user-attachments/assets/b545e194-ae40-4544-b527-d0f6dfbef4fd" />
 
-POST /upload – Upload a file
-
-GET / – List all documents
-
-GET /{id} – Get document details
-
-DELETE /{id} – Delete a document
-
-/api/ai – AI features
-
-POST /ask – Ask a question
-
-POST /summarize – Summarize a document
-
-Frontend (React + Tailwind CSS)
-
-Single Page Application (SPA)
-
-Document list with file icons
-
-Summarization & Q&A interface
-
-Upload form with progress and error handling
-
-
- 1. Uploading the File
-<img width="1920" height="1080" alt="Screenshot (434)" src="https://github.com/user-attachments/assets/23558c5f-fd58-42da-b6d4-699d259098a6" />
- 2. Asking Questions
-<img width="1920" height="1080" alt="Screenshot (435)" src="https://github.com/user-attachments/assets/a2adcd02-78ee-4a27-be76-39830975d8f1" />
- 3. Summarization of whole document
-<img width="1920" height="1080" alt="Screenshot (436)" src="https://github.com/user-attachments/assets/a3eb3c59-76df-4178-a246-b577e121ef03" />
+---
 
