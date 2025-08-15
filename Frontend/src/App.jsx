@@ -1,12 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 
-// Simplified, user-friendly single-page React + Tailwind app.
-// Place this file as src/App.jsx in your Vite + Tailwind project.
-// Assumes dev proxy ("/api" -> backend) is configured so fetch calls use relative paths.
-
 export default function App() {
   const [documents, setDocuments] = useState([]);
-  const [selectedDoc, setSelectedDoc] = useState(null); // contains the document object (we won't show internal IDs)
+  const [selectedDoc, setSelectedDoc] = useState(null); 
   const [uploading, setUploading] = useState(false);
   const [aiResponse, setAiResponse] = useState("");
   const [query, setQuery] = useState("");
