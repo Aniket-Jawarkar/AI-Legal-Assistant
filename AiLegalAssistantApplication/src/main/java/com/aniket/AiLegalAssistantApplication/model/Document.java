@@ -1,8 +1,6 @@
 package com.aniket.AiLegalAssistantApplication.model;
 
-
 import jakarta.persistence.*;
-
 import java.util.Arrays;
 
 @Entity
@@ -13,27 +11,18 @@ public class Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String fileName;
 
-    private  String fileName;
+    private String contentType;
 
-
-    private  String contentType;
-
-    @Lob   // Large Object in JPA      (BLOB= binar , CLOB= Character)
-    @Column(columnDefinition = "LONGLOB") // LONGLOB can hold 4gb of binray data
-
-    /*
-    @Lob only tells JPA “store as large object”, but it does not guarantee the exact SQL type.
-    Without the columnDefinition, Hibernate might choose a smaller type like BLOB (max 64 KB) or MEDIUMBLOB (max 16 MB).
-     */
-
-    private byte[] data; // for storing the file content
+    @Lob
+    @Column(nullable = false, columnDefinition = "LONGBLOB") // correct MySQL type for large binary data
+    private byte[] data;
 
     public Document() {
     }
 
-    public Document( String fileName, String contentType, byte[] data) {
-
+    public Document(String fileName, String contentType, byte[] data) {
         this.fileName = fileName;
         this.contentType = contentType;
         this.data = data;

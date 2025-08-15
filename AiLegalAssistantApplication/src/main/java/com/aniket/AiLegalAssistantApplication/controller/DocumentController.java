@@ -1,46 +1,46 @@
 package com.aniket.AiLegalAssistantApplication.controller;
-/*
-    1. POST /api/documents/upload
-    (From Frontend)to send a legal document (PDF, Word, etc.) to the system.
-    it should  extracts text, splits it into small chunks, creates AI embeddings
-     and stores them in a vector database (FAISS/PgVector).
 
+import com.aniket.AiLegalAssistantApplication.model.Document;
+import com.aniket.AiLegalAssistantApplication.service.DocumentService;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
-    2. POST /api/documents/{id}/ask
-    We ask a question about a specific uploaded document.
-    The system finds the most relevant chunks from the document (using embeddings search)
-    and sends them to the AI model (Gemini 2.5 Pro).
-    AI responds with a direct answer, citing the document.
-
-
-    3. POST /api/documents/{id}/summarize
-    The AI reads the whole document and returns a short, plain-English summary.
-
-
-    4. GET /api/documents/{id} — metadata & preview
-    Gives you metadata (like name, upload date, file size) and a small text preview of the uploaded document.
-
-
-    5.GET /api/documents — list (optional pagination)
-    Lists all uploaded documents (newest first).
-    If you have many files, you can fetch them page by page (pagination).
-
-
-    6. DELETE /api/documents/{id}
-    Removes the uploaded document and its embeddings from storage.
-
-
-*/
-
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @RestController
+@RequestMapping("/api/documents")
 public class DocumentController {
 
-    @PostMapping("/api/document/upload")
-    private void uploadDocument(){
+    private final DocumentService documentService;
 
+    public DocumentController(DocumentService documentService) {
+        this.documentService = documentService;
+    }
+
+    @PostMapping("/upload")
+    public Document uploadDocument(@RequestParam("file") MultipartFile file) {
+        try {
+            return documentService.saveDocument(file);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to upload document", e);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public Document getDocumentById(@PathVariable Long id) {
+        return documentService.getDocument(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Document Not Found"));
+    }
+
+    @GetMapping
+    public List<Document> getAllDocuments() {
+        return documentService.getAllDocument();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteDocument(@PathVariable Long id) {
+        documentService.deleteDocument(id);
     }
 }
